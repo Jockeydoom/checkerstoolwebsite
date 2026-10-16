@@ -1,2 +1,2 @@
 // Deployment placeholder. Replace the public publishable/anon key before publishing.
-window.CHECKERS_DASHBOARD = {supabaseUrl:"https://zmusvyosvryrzujlzbcj.supabase.co",supabaseAnonKey:"REPLACE_WITH_SUPABASE_PUBLISHABLE_OR_ANON_KEY",functionName:"checkers-dashboard"};
+window.CHECKERS_DASHBOARD = {supabaseUrl:"https://zmusvyosvryrzujlzbcj.supabase.co",supabaseAnonKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptdXN2eW9zdnJ5cnp1amx6YmNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNDE3NTcsImV4cCI6MjA5NjkxNzc1N30.lwT14s5wZf80JvqlQPSNokRALpX9ImpK9PRXUbdpX_E",functionName:"checkers-dashboard"};
