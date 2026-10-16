@@ -1,1 +1,109 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Checker’s Tool · Secure Dashboard</title><style>body{font-family:Segoe UI,Arial,sans-serif;background:#f4f7fb;color:#17314c;margin:0}header{background:#102a45;color:#fff;padding:20px 6%}main{max-width:900px;margin:35px auto;padding:0 18px}.card{background:white;border:1px solid #dde5ed;border-radius:14px;padding:24px;margin:15px 0}input,button{padding:12px;border-radius:7px;border:1px solid #b5c5d5}button{background:#14547b;color:white;cursor:pointer}button:disabled{opacity:.5}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}.stat{font-size:32px;font-weight:700}#message{white-space:pre-wrap}a{color:#1779ac}</style></head><body><header><strong>Checker’s Tool · Secure Dashboard</strong></header><main><p><a href="/">← Official Portal</a></p><section class="card"><h1>Administrator sign-in</h1><p>Use your approved Supabase Auth email. Only email addresses allowed on the server can access statistics.</p><input type="email" id="email" placeholder="work email" autocomplete="email"><button id="login">Email sign-in link</button><button id="logout" hidden>Sign out</button><p id="message" role="status"></p></section><section class="stats" id="stats" hidden><div class="card"><div>Registered accounts</div><div class="stat" id="accounts">—</div></div><div class="card"><div>Open tickets</div><div class="stat" id="openTickets">—</div></div><div class="card"><div>Total tickets</div><div class="stat" id="tickets">—</div></div><div class="card"><div>Configured jobs</div><div class="stat" id="jobs">—</div></div></section><p id="asof"></p></main><script src="dashboard-config.js"></script><script type="module" src="dashboard.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checker’s Tool · Secure Dashboard</title>
+    <style>
+        body {
+            font-family: Segoe UI, Arial, sans-serif;
+            background: #f4f7fb;
+            color: #17314c;
+            margin: 0
+        }
+
+        header {
+            background: #102a45;
+            color: #fff;
+            padding: 20px 6%
+        }
+
+        main {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 18px
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #dde5ed;
+            border-radius: 14px;
+            padding: 24px;
+            margin: 15px 0
+        }
+
+        input,
+        button {
+            padding: 12px;
+            border-radius: 7px;
+            border: 1px solid #b5c5d5
+        }
+
+        button {
+            background: #14547b;
+            color: white;
+            cursor: pointer
+        }
+
+        button:disabled {
+            opacity: .5
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 14px
+        }
+
+        .stat {
+            font-size: 32px;
+            font-weight: 700
+        }
+
+        #message {
+            white-space: pre-wrap
+        }
+
+        a {
+            color: #1779ac
+        }
+    </style>
+</head>
+
+<body>
+    <header><strong>Checker’s Tool · Secure Dashboard</strong></header>
+    <main>
+        <p><a href="/">← Official Portal</a></p>
+        <section class="card">
+            <h1>Administrator sign-in</h1>
+            <p>Use your approved Supabase Auth email. Only email addresses allowed on the server can access statistics.
+            </p><input type="email" id="email" placeholder="work email" autocomplete="email"><button id="login">Email
+                sign-in link</button><button id="logout" hidden>Sign out</button>
+            <p id="message" role="status"></p>
+        </section>
+        <section class="stats" id="stats" hidden>
+            <div class="card">
+                <div>Registered accounts</div>
+                <div class="stat" id="accounts">—</div>
+            </div>
+            <div class="card">
+                <div>Open tickets</div>
+                <div class="stat" id="openTickets">—</div>
+            </div>
+            <div class="card">
+                <div>Total tickets</div>
+                <div class="stat" id="tickets">—</div>
+            </div>
+            <div class="card">
+                <div>Configured jobs</div>
+                <div class="stat" id="jobs">—</div>
+            </div>
+        </section>
+        <p id="asof"></p>
+    </main>
+    <script src="dashboard-config.js"></script>
+    <script type="module" src="dashboard.js"></script>
+</body>
+
+</html>
