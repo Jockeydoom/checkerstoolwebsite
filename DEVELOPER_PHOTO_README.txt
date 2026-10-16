@@ -1,0 +1,1 @@
+Replace developer-placeholder.svg with your approved portrait, e.g. developer-photo.jpg, and update the img src in index.html. No other website sections were changed. The illustration is a generic placeholder, not a depiction of Nivin Varkey.
