@@ -49,8 +49,7 @@ async function refresh() {
     }
     $("logout").hidden = false;
     msg("Verifying administrator access…");
-    const { data: { session: current } } = await client.auth.refreshSession();
-    const token = current?.access_token || session.access_token;
+    const token = session.access_token;
     const response = await fetch(cfg.supabaseUrl.replace(/\/$/, "") + "/functions/v1/" + encodeURIComponent(cfg.functionName), {
       headers: { Authorization: "Bearer " + token, apikey: cfg.supabaseAnonKey },
       cache: "no-store"
@@ -67,5 +66,14 @@ async function refresh() {
     msg("Dashboard unavailable: " + error.message);
   } finally { refreshing = false; }
 }
-client.auth.onAuthStateChange(() => { queueMicrotask(refresh); });
-refresh();
+const callbackParams = new URLSearchParams(location.search);
+const hashParams = new URLSearchParams(location.hash.slice(1));
+const callbackError = callbackParams.get("error_description") || hashParams.get("error_description");
+if (callbackError) {
+  msg("Email sign-in link failed: " + callbackError + ". Request a new link and verify the dashboard URL is allowed in Supabase Auth redirect settings.");
+} else {
+  client.auth.onAuthStateChange((event) => {
+    if (event === "SIGNED_IN" || event === "SIGNED_OUT" || event === "TOKEN_REFRESHED") void refresh();
+  });
+  void refresh();
+}
