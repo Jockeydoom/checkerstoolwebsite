@@ -77,9 +77,15 @@
         <p><a href="/">← Official Portal</a></p>
         <section class="card">
             <h1>Administrator sign-in</h1>
-            <p>Use your approved Supabase Auth email. Only email addresses allowed on the server can access statistics.
-            </p><input type="email" id="email" placeholder="work email" autocomplete="email"><button id="login">Email
-                sign-in link</button><button id="logout" hidden>Sign out</button>
+            <p>Sign in using your registered Supabase Auth email and password. Administrator access is verified on the server.</p>
+            <form id="loginForm" autocomplete="on">
+                <label for="email">Email address</label>
+                <input type="email" id="email" placeholder="admin@example.com" autocomplete="username" required style="display:block;width:min(100%,380px);box-sizing:border-box;margin:8px 0 16px">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" required style="display:block;width:min(100%,380px);box-sizing:border-box;margin:8px 0 16px">
+                <button type="submit" id="login">Sign in</button>
+                <button type="button" id="logout" hidden>Sign out</button>
+            </form>
             <p id="message" role="status"></p>
         </section>
         <section class="stats" id="stats" hidden>
@@ -102,8 +108,8 @@
         </section>
         <p id="asof"></p>
     </main>
-    <script src="dashboard-config.js?v=20261019b"></script>
-    <script type="module" src="dashboard.js?v=20261019b"></script>
+    <script src="dashboard-config.js?v=20261019c"></script>
+    <script type="module" src="dashboard.js?v=20261019c"></script>
 </body>
 
 </html>
