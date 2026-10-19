@@ -50,7 +50,7 @@
             opacity: .5
         }
 
-        .stats {
+        [hidden] { display: none !important; }\n\n        .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
             gap: 14px
@@ -102,8 +102,8 @@
         </section>
         <p id="asof"></p>
     </main>
-    <script src="dashboard-config.js"></script>
-    <script type="module" src="dashboard.js"></script>
+    <script src="dashboard-config.js?v=20261019b"></script>
+    <script type="module" src="dashboard.js?v=20261019b"></script>
 </body>
 
 </html>
