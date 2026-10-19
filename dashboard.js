@@ -13,7 +13,7 @@ const client = createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
 let refreshing = false;
 $("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
-  const email = $("email").value.trim();
+  const username = $("email").value.trim();
   const password = $("password").value;
   if (!$("loginForm").reportValidity()) return;
   $("login").disabled = true;
