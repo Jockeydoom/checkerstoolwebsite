@@ -77,10 +77,10 @@
         <p><a href="/">← Official Portal</a></p>
         <section class="card">
             <h1>Administrator sign-in</h1>
-            <p>Sign in using your registered Supabase Auth email and password. Administrator access is verified on the server.</p>
+            <p>Sign in using your Checker’s Tool username and separate website password. Administrator access is verified on the server.</p>
             <form id="loginForm" autocomplete="on">
-                <label for="email">Email address</label>
-                <input type="email" id="email" placeholder="admin@example.com" autocomplete="username" required style="display:block;width:min(100%,380px);box-sizing:border-box;margin:8px 0 16px">
+                <label for="email">Username</label>
+                <input type="text" id="email" placeholder="Your Checker’s Tool username" autocomplete="username" pattern="[A-Za-z0-9._-]{3,80}" required style="display:block;width:min(100%,380px);box-sizing:border-box;margin:8px 0 16px">
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" required style="display:block;width:min(100%,380px);box-sizing:border-box;margin:8px 0 16px">
                 <button type="submit" id="login">Sign in</button>
@@ -108,8 +108,8 @@
         </section>
         <p id="asof"></p>
     </main>
-    <script src="dashboard-config.js?v=20261019c"></script>
-    <script type="module" src="dashboard.js?v=20261019c"></script>
+    <script src="dashboard-config.js?v=20261019d"></script>
+    <script type="module" src="dashboard.js?v=20261019d"></script>
 </body>
 
 </html>
