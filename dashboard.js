@@ -8,26 +8,29 @@ if (!cfg?.supabaseUrl || !cfg?.supabaseAnonKey || cfg.supabaseAnonKey.startsWith
   throw new Error("Dashboard configuration missing");
 }
 const client = createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
-  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
 });
 let refreshing = false;
-$("login").addEventListener("click", async () => {
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
   const email = $("email").value.trim();
-  if (!$("email").validity.valid || !email) { msg("Enter a valid email address."); return; }
+  const password = $("password").value;
+  if (!$("loginForm").reportValidity()) return;
   $("login").disabled = true;
-  msg("Requesting secure sign-in link…");
+  msg("Signing in securely…");
   try {
-    const { error } = await client.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: location.origin + location.pathname, shouldCreateUser: false }
-    });
+    const { error } = await client.auth.signInWithPassword({ email, password });
     if (error) throw error;
-    msg("If this email is registered, check your inbox and spam folder for the sign-in link. Open the link in this browser.");
+    $("password").value = "";
+    await refresh();
   } catch (error) {
-    msg("Sign-in request failed: " + error.message);
-  } finally { $("login").disabled = false; }
+    msg("Sign-in failed: " + (error.message === "Invalid login credentials"
+      ? "Invalid email or password. Confirm your account has a password set in Supabase Auth."
+      : error.message));
+  } finally {
+    $("login").disabled = false;
+  }
 });
-$("email").addEventListener("keydown", event => { if (event.key === "Enter") $("login").click(); });
 $("logout").addEventListener("click", async () => {
   await client.auth.signOut();
   $("stats").hidden = true;
@@ -60,20 +63,10 @@ async function refresh() {
     for (const [id, value] of Object.entries(values)) $(id).textContent = Number(value ?? 0).toLocaleString();
     $("stats").hidden = false;
     $("asof").textContent = "Last refreshed: " + new Date(body.generated_at).toLocaleString();
-    msg("Signed in. Administrator access verified.");
+    $("loginForm").hidden = true;\n    msg("Signed in. Administrator access verified.");
   } catch (error) {
     $("stats").hidden = true;
     msg("Dashboard unavailable: " + error.message);
   } finally { refreshing = false; }
 }
-const callbackParams = new URLSearchParams(location.search);
-const hashParams = new URLSearchParams(location.hash.slice(1));
-const callbackError = callbackParams.get("error_description") || hashParams.get("error_description");
-if (callbackError) {
-  msg("Email sign-in link failed: " + callbackError + ". Request a new link and verify the dashboard URL is allowed in Supabase Auth redirect settings.");
-} else {
-  client.auth.onAuthStateChange((event) => {
-    if (event === "SIGNED_IN" || event === "SIGNED_OUT" || event === "TOKEN_REFRESHED") void refresh();
-  });
-  void refresh();
-}
+client.auth.onAuthStateChange((event) => {\n  if (event === "SIGNED_IN" || event === "SIGNED_OUT" || event === "TOKEN_REFRESHED") queueMicrotask(refresh);\n});\nvoid refresh();\n
