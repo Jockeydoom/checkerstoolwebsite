@@ -1,1 +1,2 @@
-Replace developer-placeholder.svg with your approved portrait, e.g. developer-photo.jpg, and update the img src in index.html. No other website sections were changed. The illustration is a generic placeholder, not a depiction of Nivin Varkey.
+Developer portrait is loaded from developer-photo.jpg in the repository root.
+The developer section of index.html includes a placeholder fallback until the portrait is uploaded.
